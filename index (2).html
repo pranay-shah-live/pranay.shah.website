@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pranay Shah — The Closer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --black: #0a0608;
+  --paper: #f2ead8;
+  --paper-dark: #e5d9be;
+  --yellow: #ffd000;
+  --red: #d91a1a;
+  --red-dark: #9e0f0f;
+  --blue-ink: #1a2744;
+  --border-thick: 6px solid var(--black);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: #0a0608;
+  background-image: repeating-linear-gradient(0deg,transparent,transparent 40px,rgba(255,255,255,0.015) 40px,rgba(255,255,255,0.015) 41px);
+  font-family: 'Oswald', sans-serif;
+  overflow-x: hidden;
+  cursor: crosshair;
+}
+
+/* ── TEXTURES ── */
+.halftone { background-image: radial-gradient(circle,rgba(0,0,0,0.35) 1.2px,transparent 1.2px); background-size: 8px 8px; }
+.halftone-red { background-image: radial-gradient(circle,rgba(180,20,20,0.4) 1.2px,transparent 1.2px); background-size: 7px 7px; }
+.halftone-yellow { background-image: radial-gradient(circle,rgba(140,100,0,0.35) 1.2px,transparent 1.2px); background-size: 8px 8px; }
+.halftone-blue { background-image: radial-gradient(circle,rgba(10,20,80,0.5) 1.2px,transparent 1.2px); background-size: 7px 7px; }
+.speed-lines {
+  background: conic-gradient(from 0deg at 50% 50%,
+    rgba(0,0,0,0) 0deg,rgba(0,0,0,0.06) 2deg,rgba(0,0,0,0) 3deg,
+    rgba(0,0,0,0) 10deg,rgba(0,0,0,0.05) 11.5deg,rgba(0,0,0,0) 13deg,
+    rgba(0,0,0,0) 20deg,rgba(0,0,0,0.06) 22deg,rgba(0,0,0,0) 24deg,
+    rgba(0,0,0,0) 30deg,rgba(0,0,0,0.04) 32deg,rgba(0,0,0,0) 34deg,
+    rgba(0,0,0,0) 42deg,rgba(0,0,0,0.07) 43.5deg,rgba(0,0,0,0) 45deg,
+    rgba(0,0,0,0) 52deg,rgba(0,0,0,0.05) 54deg,rgba(0,0,0,0) 56deg,
+    rgba(0,0,0,0) 64deg,rgba(0,0,0,0.06) 65.5deg,rgba(0,0,0,0) 67deg,
+    rgba(0,0,0,0) 74deg,rgba(0,0,0,0.04) 76deg,rgba(0,0,0,0) 78deg,
+    rgba(0,0,0,0) 86deg,rgba(0,0,0,0.07) 87.5deg,rgba(0,0,0,0) 89deg,
+    rgba(0,0,0,0) 96deg,rgba(0,0,0,0.05) 98deg,rgba(0,0,0,0) 100deg,
+    rgba(0,0,0,0) 108deg,rgba(0,0,0,0.06) 109.5deg,rgba(0,0,0,0) 111deg,
+    rgba(0,0,0,0) 118deg,rgba(0,0,0,0.04) 120deg,rgba(0,0,0,0) 122deg,
+    rgba(0,0,0,0) 130deg,rgba(0,0,0,0.07) 131.5deg,rgba(0,0,0,0) 133deg,
+    rgba(0,0,0,0) 140deg,rgba(0,0,0,0.05) 142deg,rgba(0,0,0,0) 144deg,
+    rgba(0,0,0,0) 152deg,rgba(0,0,0,0.06) 153.5deg,rgba(0,0,0,0) 155deg,
+    rgba(0,0,0,0) 162deg,rgba(0,0,0,0.04) 164deg,rgba(0,0,0,0) 166deg,
+    rgba(0,0,0,0) 174deg,rgba(0,0,0,0.07) 175.5deg,rgba(0,0,0,0) 177deg,
+    rgba(0,0,0,0) 184deg,rgba(0,0,0,0.05) 186deg,rgba(0,0,0,0) 188deg,
+    rgba(0,0,0,0) 196deg,rgba(0,0,0,0.06) 197.5deg,rgba(0,0,0,0) 199deg,
+    rgba(0,0,0,0) 206deg,rgba(0,0,0,0.04) 208deg,rgba(0,0,0,0) 210deg,
+    rgba(0,0,0,0) 218deg,rgba(0,0,0,0.07) 219.5deg,rgba(0,0,0,0) 221deg,
+    rgba(0,0,0,0) 228deg,rgba(0,0,0,0.05) 230deg,rgba(0,0,0,0) 232deg,
+    rgba(0,0,0,0) 240deg,rgba(0,0,0,0.06) 241.5deg,rgba(0,0,0,0) 243deg,
+    rgba(0,0,0,0) 250deg,rgba(0,0,0,0.04) 252deg,rgba(0,0,0,0) 254deg,
+    rgba(0,0,0,0) 262deg,rgba(0,0,0,0.07) 263.5deg,rgba(0,0,0,0) 265deg,
+    rgba(0,0,0,0) 272deg,rgba(0,0,0,0.05) 274deg,rgba(0,0,0,0) 276deg,
+    rgba(0,0,0,0) 284deg,rgba(0,0,0,0.06) 285.5deg,rgba(0,0,0,0) 287deg,
+    rgba(0,0,0,0) 294deg,rgba(0,0,0,0.04) 296deg,rgba(0,0,0,0) 298deg,
+    rgba(0,0,0,0) 306deg,rgba(0,0,0,0.07) 307.5deg,rgba(0,0,0,0) 309deg,
+    rgba(0,0,0,0) 316deg,rgba(0,0,0,0.05) 318deg,rgba(0,0,0,0) 320deg,
+    rgba(0,0,0,0) 328deg,rgba(0,0,0,0.06) 329.5deg,rgba(0,0,0,0) 331deg,
+    rgba(0,0,0,0) 338deg,rgba(0,0,0,0.04) 340deg,rgba(0,0,0,0) 342deg,
+    rgba(0,0,0,0) 350deg,rgba(0,0,0,0.07) 351.5deg,rgba(0,0,0,0) 353deg,
+    rgba(0,0,0,0) 360deg);
+}
+
+/* ── CAPTION BOX ── */
+.caption { background:var(--yellow); border:3px solid var(--black); padding:7px 14px; font-family:'Oswald',sans-serif; font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--black); display:inline-block; line-height:1.3; }
+.caption.red { background:var(--red); color:white; }
+.caption.dark { background:transparent; border-color:var(--yellow); color:var(--yellow); }
+.caption.blk { background:var(--black); color:var(--yellow); border-color:var(--yellow); }
+
+/* ── SPEECH BUBBLE ── */
+.bubble { background:white; border:3px solid var(--black); border-radius:14px; padding:12px 18px; font-size:14px; font-weight:500; color:var(--black); position:relative; line-height:1.45; }
+.bubble::after { content:''; position:absolute; bottom:-18px; left:24px; width:0; height:0; border-left:10px solid transparent; border-right:4px solid transparent; border-top:18px solid var(--black); }
+.bubble.right::after { left:auto; right:24px; }
+.bubble.top::after { display:none; }
+.bubble.top::before { content:''; position:absolute; top:-18px; left:24px; width:0; height:0; border-left:10px solid transparent; border-right:4px solid transparent; border-bottom:18px solid var(--black); }
+
+/* ── ACTION WORDS ── */
+.action { font-family:'Bangers',cursive; -webkit-text-stroke:3px var(--black); paint-order:stroke fill; display:inline-block; line-height:0.85; }
+
+/* ── PANEL ── */
+.panel { background:var(--paper); border:var(--border-thick); position:relative; overflow:hidden; }
+
+/* ── COMIC PAGE ── */
+.comic-page { padding:8px; display:flex; flex-direction:column; gap:8px; }
+.panel-row { display:flex; gap:8px; }
+.panel-row>.panel { flex:1; }
+.p23 { flex:2 !important; }
+.p13 { flex:1 !important; }
+.p35 { flex:3 !important; }
+.p25 { flex:2 !important; }
+
+/* ── CHAPTER HEADER ── */
+.chap-header { background:var(--black); padding:20px 32px; display:flex; align-items:center; gap:24px; border-bottom:5px solid var(--yellow); border-top:4px solid rgba(255,255,255,0.08); }
+.chap-num { font-family:'Bangers',cursive; font-size:72px; color:var(--yellow); line-height:1; }
+.chap-title { font-family:'Bangers',cursive; font-size:40px; color:white; letter-spacing:2px; line-height:1; }
+.chap-sub { font-size:12px; color:rgba(255,255,255,0.45); letter-spacing:2px; text-transform:uppercase; margin-top:4px; }
+
+/* ── PANEL CONTENT ── */
+.pc { padding:24px; height:100%; display:flex; flex-direction:column; position:relative; z-index:2; }
+.panel-ghost { position:absolute; font-family:'Bangers',cursive; color:rgba(0,0,0,0.05); line-height:1; pointer-events:none; user-select:none; z-index:0; }
+.panel-ghost.white { color:rgba(255,255,255,0.04); }
+
+.big-text { font-family:'Bangers',cursive; font-size:clamp(36px,5vw,72px); line-height:0.9; color:var(--black); }
+.body-text { font-family:'Oswald',sans-serif; font-size:14px; font-weight:400; color:var(--black); line-height:1.65; }
+.body-text strong { font-weight:700; color:var(--red); }
+
+/* stat callout */
+.stat { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:32px 20px; height:100%; }
+.stat-n { font-family:'Bangers',cursive; font-size:clamp(60px,10vw,130px); line-height:0.85; color:var(--yellow); -webkit-text-stroke:3px var(--black); paint-order:stroke fill; }
+.stat-l { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:white; margin-top:10px; }
+.stat-c { font-size:10px; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-top:4px; }
+
+/* panels backgrounds */
+.p-dark { background:var(--blue-ink) !important; }
+.p-red { background:var(--red) !important; }
+.p-yellow { background:var(--yellow) !important; }
+.p-black { background:var(--black) !important; }
+.p-ink { background:#111827 !important; }
+
+/* heights */
+.tall { min-height:340px; }
+.xtall { min-height:440px; }
+.med { min-height:240px; }
+.short { min-height:160px; }
+
+/* client badges */
+.cbadge { font-family:'Oswald',sans-serif; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:5px 12px; background:var(--black); color:var(--yellow); border:2px solid rgba(255,208,0,0.2); }
+
+/* timeline */
+.tl { display:flex; align-items:center; gap:0; }
+.tl-dot { width:14px; height:14px; background:var(--yellow); border:3px solid var(--black); border-radius:50%; flex-shrink:0; }
+.tl-seg { height:6px; background:var(--black); flex:1; }
+.tl-seg.on { background:var(--red); }
+
+/* ======================================================
+   COVER
+   ====================================================== */
+#cover { height:100vh; min-height:580px; background:var(--black); display:flex; align-items:stretch; padding:10px; }
+.cover-wrap { flex:1; border:6px solid var(--yellow); display:grid; grid-template-rows:auto 1fr auto; overflow:hidden; min-height:0; }
+
+.cover-top { background:var(--red); border-bottom:5px solid var(--black); padding:8px 24px; display:flex; justify-content:space-between; align-items:center; flex-shrink:0; }
+.cover-issue-txt { font-size:12px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:white; }
+.cover-price-txt { font-family:'Bangers',cursive; font-size:18px; letter-spacing:2px; color:var(--yellow); }
+
+.cover-body { position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:12px 24px; overflow:hidden; min-height:0; gap:2px; }
+.cover-body::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(-48deg,transparent,transparent 28px,rgba(255,208,0,0.04) 28px,rgba(255,208,0,0.04) 30px); }
+.cover-glow { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:60vmin; height:60vmin; background:radial-gradient(circle,rgba(255,208,0,0.08),transparent 70%); border-radius:50%; pointer-events:none; }
+
+.cover-sub { font-size:13px; font-weight:700; letter-spacing:6px; text-transform:uppercase; color:var(--yellow); margin-bottom:16px; position:relative; z-index:2; animation:flicker 5s ease-in-out infinite; }
+@keyframes flicker { 0%,94%,100%{opacity:1;} 96%{opacity:0.4;} 98%{opacity:0.2;} }
+
+.cover-title-block { position:relative; z-index:2; text-align:center; margin-bottom:8px; }
+.cover-slash { position:absolute; top:-8px; left:-16px; right:-16px; bottom:-8px; background:var(--red); transform:rotate(-1.5deg); z-index:0; }
+.cover-t1 { font-family:'Bangers',cursive; font-size:clamp(48px,9vw,120px); line-height:0.85; color:var(--yellow); -webkit-text-stroke:4px var(--black); paint-order:stroke fill; text-shadow:8px 8px 0 var(--black); position:relative; z-index:2; display:block; animation:speedster-enter 0.9s cubic-bezier(0.22,1,0.36,1) both; }
+.cover-t2 { font-family:'Bangers',cursive; font-size:clamp(48px,9vw,120px); line-height:0.85; color:white; -webkit-text-stroke:4px var(--yellow); paint-order:stroke fill; text-shadow:8px 8px 0 rgba(255,208,0,0.5); position:relative; z-index:2; display:block; }
+@keyframes speedster-enter {
+  0%   { transform: translateX(-150vw) skewX(-18deg); opacity: 0; }
+  60%  { transform: translateX(28px) skewX(-4deg); opacity: 1; }
+  78%  { transform: translateX(-10px) skewX(2deg); }
+  90%  { transform: translateX(5px) skewX(-1deg); }
+  100% { transform: translateX(0) skewX(0deg); opacity: 1; }
+}
+
+/* figure */
+.cover-figure { position:relative; z-index:3; width:190px; height:230px; margin:4px auto; flex-shrink:0; }
+.fig-shadow { position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:140px; height:24px; background:rgba(0,0,0,0.5); border-radius:50%; filter:blur(6px); }
+.fig-cape { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); width:150px; height:170px; background:var(--red); clip-path:polygon(25% 0,75% 0,96% 18%,100% 100%,78% 76%,50% 100%,22% 76%,0% 100%,4% 18%); z-index:0; }
+.fig-cape::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,0.35)); }
+.fig-body { position:absolute; bottom:30px; left:50%; transform:translateX(-50%); width:86px; height:150px; background:var(--blue-ink); clip-path:polygon(20% 0%,80% 0%,100% 15%,94% 100%,6% 100%,0% 15%); z-index:2; border:3px solid var(--black); }
+.fig-body::before { content:'PS'; font-family:'Bangers',cursive; font-size:30px; color:var(--yellow); position:absolute; top:38%; left:50%; transform:translate(-50%,-50%); -webkit-text-stroke:1.5px var(--black); letter-spacing:1px; }
+.fig-arms { position:absolute; bottom:125px; left:50%; transform:translateX(-50%); width:170px; height:36px; z-index:3; }
+.fig-arms::before,.fig-arms::after { content:''; position:absolute; top:0; width:48px; height:16px; background:var(--blue-ink); border-radius:20px; border:3px solid var(--black); }
+.fig-arms::before { left:0; transform:rotate(18deg); }
+.fig-arms::after { right:0; transform:rotate(-18deg); }
+.fig-head { position:absolute; bottom:178px; left:50%; transform:translateX(-50%); width:64px; height:64px; background:#c8956a; border-radius:50%; border:4px solid var(--black); z-index:4; }
+.fig-head::before { content:''; position:absolute; top:-18px; left:50%; transform:translateX(-50%); width:72px; height:32px; background:var(--black); border-radius:50% 50% 0 0; }
+
+/* explosion rays */
+.fig-explosion { position:absolute; top:10px; left:50%; transform:translateX(-50%); width:260px; height:260px; z-index:1; }
+.ray { position:absolute; top:50%; left:50%; width:50%; height:2.5px; transform-origin:left center; background:linear-gradient(90deg,transparent,rgba(255,208,0,0.7)); animation:ray-pulse 1.6s ease-in-out infinite alternate; }
+.ray:nth-child(even) { animation-delay: 0.8s; background:linear-gradient(90deg,transparent,rgba(255,208,0,0.45)); }
+.fig-explosion { animation: ray-spin 10s linear infinite; }
+@keyframes ray-spin { to { transform: translateX(-50%) rotate(360deg); } }
+@keyframes ray-pulse { 0%{opacity:0.25;} 100%{opacity:1;} }
+.ray:nth-child(1){transform:rotate(0deg);}  .ray:nth-child(2){transform:rotate(22.5deg);}
+.ray:nth-child(3){transform:rotate(45deg);} .ray:nth-child(4){transform:rotate(67.5deg);}
+.ray:nth-child(5){transform:rotate(90deg);} .ray:nth-child(6){transform:rotate(112.5deg);}
+.ray:nth-child(7){transform:rotate(135deg);}.ray:nth-child(8){transform:rotate(157.5deg);}
+.ray:nth-child(9){transform:rotate(180deg);}.ray:nth-child(10){transform:rotate(202.5deg);}
+.ray:nth-child(11){transform:rotate(225deg);}.ray:nth-child(12){transform:rotate(247.5deg);}
+.ray:nth-child(13){transform:rotate(270deg);}.ray:nth-child(14){transform:rotate(292.5deg);}
+.ray:nth-child(15){transform:rotate(315deg);}.ray:nth-child(16){transform:rotate(337.5deg);}
+
+.cover-tagline { font-size:17px; font-style:italic; font-weight:500; color:rgba(255,255,255,0.75); position:relative; z-index:2; margin-top:12px; text-align:center; }
+.starburst { position:absolute; top:20px; right:20px; width:90px; height:90px; background:var(--yellow); clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); display:flex; align-items:center; justify-content:center; font-family:'Bangers',cursive; font-size:12px; color:var(--black); text-align:center; line-height:1.1; animation:spin 22s linear infinite; z-index:10; }
+@keyframes spin { to { transform:rotate(360deg); } }
+
+.cover-bottom { background:var(--yellow); border-top:5px solid var(--black); padding:8px 24px; display:flex; justify-content:space-between; align-items:center; flex-shrink:0; }
+.cover-name-bar { font-family:'Bangers',cursive; font-size:26px; letter-spacing:4px; color:var(--black); }
+.cover-role-bar { font-family:'Oswald',sans-serif; font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--black); }
+
+/* scroll hint */
+.scroll-hint { text-align:center; padding:16px; font-family:'Bangers',cursive; font-size:14px; letter-spacing:4px; color:rgba(255,255,255,0.25); animation:bounce 2s ease-in-out infinite; }
+@keyframes bounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(5px);} }
+
+/* ======================================================
+   NAVBAR
+   ====================================================== */
+#navbar { position:sticky; top:0; z-index:200; background:var(--black); border-bottom:4px solid var(--yellow); display:flex; align-items:center; justify-content:space-between; padding:0 28px; }
+.nav-logo { font-family:'Bangers',cursive; font-size:22px; letter-spacing:3px; color:var(--yellow); text-decoration:none; padding:10px 0; }
+.nav-links { display:flex; list-style:none; }
+.nav-links a { display:block; padding:14px 18px; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:white; text-decoration:none; border-left:2px solid rgba(255,255,255,0.07); transition:background 0.2s,color 0.2s; }
+.nav-links a:hover { background:var(--yellow); color:var(--black); }
+.nav-cta { font-family:'Bangers',cursive; font-size:17px; letter-spacing:2px; padding:8px 22px; background:var(--red); color:white; text-decoration:none; border:3px solid var(--black); transition:background 0.2s; }
+.nav-cta:hover { background:var(--red-dark); }
+
+/* ======================================================
+   POWERS GRID
+   ====================================================== */
+.powers-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; padding:8px; background:var(--black); }
+.pcard { background:var(--paper); border:5px solid var(--black); overflow:hidden; transition:transform 0.25s; cursor:default; }
+.pcard:hover { transform:translateY(-5px) rotate(-0.5deg); }
+.pcard-top { position:relative; min-height:110px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.pcard-icon { font-family:'Bangers',cursive; font-size:58px; color:var(--yellow); -webkit-text-stroke:2px rgba(0,0,0,0.4); position:relative; z-index:2; }
+.pcard-body { padding:16px 18px; }
+.pcard-name { font-family:'Bangers',cursive; font-size:24px; letter-spacing:0.5px; color:var(--black); margin-bottom:6px; line-height:1; }
+.pcard-desc { font-size:13px; font-weight:400; color:#3a3a3a; line-height:1.5; }
+.pcard-level { margin-top:10px; display:flex; align-items:center; gap:6px; }
+.pcard-ll { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--black); white-space:nowrap; }
+.pips { display:flex; gap:3px; }
+.pip { width:13px; height:13px; border:2.5px solid var(--black); }
+.pip.on { background:var(--red); }
+.ptools { margin-top:8px; display:flex; flex-wrap:wrap; gap:4px; }
+.pt { font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:3px 8px; background:var(--black); color:var(--yellow); }
+
+/* ======================================================
+   ROGUES GALLERY
+   ====================================================== */
+.rogues-header { background:var(--red); padding:20px 32px; border-bottom:5px solid var(--black); border-top:4px solid rgba(255,255,255,0.08); }
+.rogues-title { font-family:'Bangers',cursive; font-size:50px; color:white; letter-spacing:2px; }
+.rogues-title span { color:var(--yellow); }
+.rogues-sub { font-size:12px; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-top:4px; }
+.rogues-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; padding:8px; background:var(--paper-dark); }
+.rcard { background:var(--paper); border:5px solid var(--black); display:grid; grid-template-columns:140px 1fr; overflow:hidden; transition:transform 0.25s; }
+.rcard:hover { transform:rotate(0.4deg) scale(1.01); }
+.rcard-left { background:var(--blue-ink); padding:20px 14px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; border-right:4px solid var(--black); position:relative; overflow:hidden; }
+.rcard-num { position:absolute; top:-10px; left:0; right:0; font-family:'Bangers',cursive; font-size:80px; color:rgba(255,208,0,0.1); line-height:1; text-align:center; }
+.rcard-villain { font-family:'Bangers',cursive; font-size:20px; color:var(--red); letter-spacing:0.5px; line-height:1.1; position:relative; z-index:2; }
+.rcard-status { margin-top:8px; font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--yellow); background:var(--black); padding:3px 8px; position:relative; z-index:2; }
+.rcard-right { padding:18px 20px; }
+.rcard-problem { font-family:'Bangers',cursive; font-size:20px; letter-spacing:0.3px; color:var(--black); line-height:1.1; margin-bottom:8px; }
+.rcard-solve { font-size:13px; color:#444; line-height:1.5; margin-bottom:10px; }
+.rcard-result { display:flex; align-items:baseline; gap:8px; }
+.rcard-rnum { font-family:'Bangers',cursive; font-size:28px; color:var(--red); line-height:1; }
+.rcard-rlabel { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--black); line-height:1.3; }
+
+/* ======================================================
+   SIGNAL
+   ====================================================== */
+.signal-wrap { border-top:6px solid var(--yellow); border-bottom:6px solid var(--yellow); display:grid; grid-template-columns:1fr 1fr; min-height:480px; }
+.signal-left { background:var(--blue-ink); border-right:6px solid var(--black); padding:56px 48px; display:flex; flex-direction:column; justify-content:center; position:relative; overflow:hidden; }
+.signal-right { background:var(--paper); padding:56px 48px; display:flex; flex-direction:column; justify-content:center; position:relative; overflow:hidden; }
+.signal-title { font-family:'Bangers',cursive; font-size:clamp(52px,7vw,90px); color:var(--yellow); line-height:0.88; letter-spacing:2px; -webkit-text-stroke:2px rgba(0,0,0,0.4); position:relative; z-index:2; }
+.signal-desc { font-size:16px; font-weight:400; color:rgba(255,255,255,0.65); line-height:1.65; margin-top:18px; max-width:340px; position:relative; z-index:2; }
+.signal-ghost { position:absolute; bottom:-30px; right:-20px; font-family:'Bangers',cursive; font-size:220px; color:rgba(255,208,0,0.04); line-height:1; pointer-events:none; }
+.citem { display:block; border:4px solid var(--black); padding:14px 18px; background:white; text-decoration:none; transition:transform 0.2s,background 0.2s; margin-bottom:14px; position:relative; overflow:hidden; }
+.citem:hover { background:var(--yellow); transform:rotate(-0.8deg) translateX(4px); }
+.citem-label { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--red); display:block; margin-bottom:3px; }
+.citem-val { font-family:'Bangers',cursive; font-size:24px; letter-spacing:0.5px; color:var(--black); }
+.cfold { position:absolute; bottom:0; right:0; width:0; height:0; border-bottom:36px solid var(--black); border-left:36px solid transparent; }
+.cnote { font-size:13px; font-style:italic; color:#777; line-height:1.5; margin-top:8px; }
+
+/* ======================================================
+   FOOTER
+   ====================================================== */
+footer { background:var(--black); border-top:4px solid var(--yellow); padding:18px 32px; display:flex; justify-content:space-between; align-items:center; font-family:'Oswald',sans-serif; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.25); }
+footer .logo { font-family:'Bangers',cursive; font-size:18px; letter-spacing:3px; color:var(--yellow); }
+
+/* ======================================================
+   SCROLL ANIMATIONS
+   ====================================================== */
+.rv { opacity:0; transform:translateY(22px); transition:opacity 0.65s ease,transform 0.65s ease; }
+.rl { opacity:0; transform:translateX(-28px); transition:opacity 0.65s ease,transform 0.65s ease; }
+.rr { opacity:0; transform:translateX(28px); transition:opacity 0.65s ease,transform 0.65s ease; }
+.rv.in,.rl.in,.rr.in { opacity:1; transform:none; }
+
+@media(max-width:860px) {
+  .panel-row { flex-direction:column; }
+  .powers-grid { grid-template-columns:1fr 1fr; }
+  .rogues-grid { grid-template-columns:1fr; }
+  .signal-wrap { grid-template-columns:1fr; }
+  .rcard { grid-template-columns:1fr; }
+  .rcard-left { display:none; }
+  .nav-links { display:none; }
+}
+@media(max-width:540px) {
+  .powers-grid { grid-template-columns:1fr; }
+}
+
+/* Speed streaks */
+.speed-streaks { position:absolute; inset:0; pointer-events:none; z-index:1; overflow:hidden; }
+.streak { position:absolute; height:2px; border-radius:2px; animation:streak-fly 0.85s ease-out both; }
+.streak:nth-child(1){top:28%;width:55%;left:-60%;background:linear-gradient(90deg,transparent,rgba(255,208,0,0.9),rgba(255,255,255,0.5));animation-delay:0s;}
+.streak:nth-child(2){top:34%;width:70%;left:-75%;background:linear-gradient(90deg,transparent,rgba(255,208,0,0.5));animation-delay:0.04s;height:1px;}
+.streak:nth-child(3){top:41%;width:45%;left:-50%;background:linear-gradient(90deg,transparent,rgba(180,220,255,0.8));animation-delay:0.02s;height:3px;}
+.streak:nth-child(4){top:56%;width:65%;left:-70%;background:linear-gradient(90deg,transparent,rgba(255,208,0,0.6));animation-delay:0.06s;height:1px;}
+.streak:nth-child(5){top:62%;width:50%;left:-55%;background:linear-gradient(90deg,transparent,rgba(255,208,0,0.8));animation-delay:0.01s;}
+.streak:nth-child(6){top:68%;width:38%;left:-43%;background:linear-gradient(90deg,transparent,rgba(180,220,255,0.4));animation-delay:0.05s;height:1px;}
+.streak:nth-child(7){top:22%;width:30%;left:-35%;background:linear-gradient(90deg,transparent,rgba(255,208,0,0.4));animation-delay:0.03s;height:1px;}
+.streak:nth-child(8){top:74%;width:58%;left:-63%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.35));animation-delay:0.07s;height:1px;}
+@keyframes streak-fly { 0%{transform:translateX(0);opacity:0;} 15%{opacity:1;} 85%{transform:translateX(165vw);opacity:0.7;} 100%{transform:translateX(175vw);opacity:0;} }
+
+/* Allies block */
+.allies-block { background:var(--black); border:var(--border-thick); border-color:var(--yellow); padding:20px 24px; }
+.allies-title { font-family:'Bangers',cursive; font-size:22px; color:var(--yellow); letter-spacing:2px; margin-bottom:12px; }
+.allies-grid { display:flex; flex-wrap:wrap; gap:8px; }
+.ally { font-family:'Oswald',sans-serif; font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:7px 14px; background:var(--blue-ink); color:var(--yellow); border:2px solid rgba(255,208,0,0.3); transition:transform 0.2s,background 0.2s; cursor:default; }
+.ally:hover { background:var(--yellow); color:var(--black); transform:rotate(-1deg); }
+
+/* Policy badge */
+.policy-badge { display:inline-flex; align-items:center; gap:8px; background:var(--black); border:3px solid var(--yellow); padding:8px 14px; margin-bottom:6px; }
+.policy-icon { font-size:18px; }
+.policy-text { font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:var(--yellow); line-height:1.3; }
+
+/* Weapons label on power cards */
+.pcard-weapons-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--black); margin-top:10px; margin-bottom:4px; border-top:2px solid var(--black); padding-top:8px; }
+</style>
+</head>
+<body>
+
+<!-- ===================== COVER ===================== -->
+<div id="cover">
+  <div class="cover-wrap">
+    <div class="cover-top">
+      <span class="cover-issue-txt">Issue #001 &nbsp;|&nbsp; Mumbai, India &nbsp;|&nbsp; 2026</span>
+      <span class="cover-price-txt">PRICELESS</span>
+    </div>
+    <div class="cover-body">
+      <div class="cover-glow"></div>
+      <div class="starburst">8 YRS OF MAYHEM</div>
+      <div class="speed-streaks">
+        <div class="streak"></div><div class="streak"></div><div class="streak"></div>
+        <div class="streak"></div><div class="streak"></div><div class="streak"></div>
+        <div class="streak"></div><div class="streak"></div>
+      </div>
+      <div class="cover-sub">The World's Most Dangerous</div>
+      <div class="cover-title-block">
+        <div class="cover-slash"></div>
+        <span class="cover-t1">MARKETING</span>
+        <span class="cover-t2">MERCENARY</span>
+      </div>
+      <div class="cover-figure">
+        <div class="fig-explosion speed-lines">
+          <div class="ray"></div><div class="ray"></div><div class="ray"></div><div class="ray"></div>
+          <div class="ray"></div><div class="ray"></div><div class="ray"></div><div class="ray"></div>
+          <div class="ray"></div><div class="ray"></div><div class="ray"></div><div class="ray"></div>
+          <div class="ray"></div><div class="ray"></div><div class="ray"></div><div class="ray"></div>
+        </div>
+        <div class="fig-shadow"></div>
+        <div class="fig-cape"></div>
+        <div class="fig-body"></div>
+        <div class="fig-arms"></div>
+        <div class="fig-head"></div>
+      </div>
+      <div class="cover-tagline">"When your start-up is dying... <em>one man answers the call."</em></div>
+    </div>
+    <div class="cover-bottom">
+      <span class="cover-name-bar">PRANAY SHAH</span>
+      <span class="cover-role-bar">Marketing &nbsp;/&nbsp; Business Development &nbsp;/&nbsp; Growth Hacking &nbsp;/&nbsp; Strategy</span>
+    </div>
+  </div>
+</div>
+
+<div class="scroll-hint">SCROLL DOWN &nbsp;&darr;&nbsp; THE STORY AWAITS</div>
+
+<!-- ===================== NAV ===================== -->
+<nav id="navbar">
+  <a href="#cover" class="nav-logo">PS</a>
+  <ul class="nav-links">
+    <li><a href="#powers">Powers</a></li>
+    <li><a href="#origin">Origin</a></li>
+    <li><a href="#rise">The Rise</a></li>
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#rogues">Rogues Gallery</a></li>
+  </ul>
+  <a href="#signal" class="nav-cta">Signal The Closer</a>
+</nav>
+
+<!-- ===================== POWERS ===================== -->
+<section id="powers" style="padding:0;background:var(--black);">
+  <div style="background:var(--black);padding:20px 32px 0;border-top:4px solid rgba(255,255,255,0.06);">
+    <div style="font-family:'Bangers',cursive;font-size:52px;color:var(--yellow);letter-spacing:2px;">SPECIAL ABILITIES</div>
+    <div style="font-size:12px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.35);padding-bottom:16px;border-bottom:4px solid var(--red);">The Mercenary's Arsenal &mdash; Six Powers. Zero Weaknesses.</div>
+  </div>
+  <div class="powers-grid">
+    <div class="pcard rv">
+      <div class="pcard-top" style="background:var(--blue-ink);">
+        <div class="halftone-blue" style="position:absolute;inset:0;opacity:0.8;"></div>
+        <div class="pcard-icon" style="position:relative;z-index:2;">BD</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">The Revenue Whisperer</div>
+        <div class="pcard-desc">Closes enterprise deals others write off as impossible. Speaks the language of Google, RBI, and media giants &mdash; and gets them to say yes. Repeatedly.</div>
+        <div class="pcard-level"><span class="pcard-ll">Threat Level:</span><div class="pips"><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div></div></div>
+        <div class="pcard-weapons-label">&#9876; Weapons</div>
+        <div class="ptools"><span class="pt">HubSpot</span><span class="pt">LinkedIn</span><span class="pt">Enterprise Pitching</span></div>
+      </div>
+    </div>
+    <div class="pcard rv" style="transition-delay:0.08s">
+      <div class="pcard-top" style="background:var(--red);">
+        <div class="halftone-red" style="position:absolute;inset:0;opacity:0.5;"></div>
+        <div class="pcard-icon" style="position:relative;z-index:2;color:var(--yellow);">MKT</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Integrated Marketing Overload</div>
+        <div class="pcard-desc">Runs brand, content, social, paid, and SEO simultaneously without dropping the plot. Every channel is a weapon pointed in the same direction.</div>
+        <div class="pcard-level"><span class="pcard-ll">Threat Level:</span><div class="pips"><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip"></div></div></div>
+        <div class="pcard-weapons-label">&#9876; Weapons</div>
+        <div class="ptools"><span class="pt">Meta Ads</span><span class="pt">Google Ads</span><span class="pt">Content Strategy</span><span class="pt">SEO</span></div>
+      </div>
+    </div>
+    <div class="pcard rv" style="transition-delay:0.16s">
+      <div class="pcard-top" style="background:#1a3a1a;">
+        <div class="halftone-blue" style="position:absolute;inset:0;opacity:0.7;"></div>
+        <div class="pcard-icon" style="position:relative;z-index:2;font-size:48px;">AUT</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Automation Architect</div>
+        <div class="pcard-desc">Turns repetitive human work into tireless machines. If it can be systematized, it will be. Frees teams to do what robots cannot &mdash; think.</div>
+        <div class="pcard-level"><span class="pcard-ll">Threat Level:</span><div class="pips"><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip"></div></div></div>
+        <div class="pcard-weapons-label">&#9876; Weapons</div>
+        <div class="ptools"><span class="pt">Zapier</span><span class="pt">N8N</span><span class="pt">Make</span><span class="pt">HubSpot</span></div>
+      </div>
+    </div>
+    <div class="pcard rv" style="transition-delay:0.24s">
+      <div class="pcard-top" style="background:#2a1a0a;">
+        <div class="halftone" style="position:absolute;inset:0;opacity:0.7;"></div>
+        <div class="pcard-icon" style="position:relative;z-index:2;color:var(--red);font-size:44px;">DATA</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">X-Ray Analytics Vision</div>
+        <div class="pcard-desc">Sees through the noise. Reads data like a second language. Turns dashboards into decisions and numbers into roadmaps. Cannot be fooled by vanity metrics.</div>
+        <div class="pcard-level"><span class="pcard-ll">Threat Level:</span><div class="pips"><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip"></div></div></div>
+        <div class="pcard-weapons-label">&#9876; Weapons</div>
+        <div class="ptools"><span class="pt">GA4</span><span class="pt">Firebase</span><span class="pt">Mixpanel</span></div>
+      </div>
+    </div>
+    <div class="pcard rv" style="transition-delay:0.32s">
+      <div class="pcard-top" style="background:#1a0a1a;">
+        <div class="halftone-blue" style="position:absolute;inset:0;opacity:0.7;"></div>
+        <div class="pcard-icon" style="position:relative;z-index:2;font-size:44px;color:white;">CONT</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Content Production Control</div>
+        <div class="pcard-desc">Pre-production to post. Brief to final cut. Manages the entire content pipeline without losing creative quality or missing a deadline. Two out of three ain't bad.</div>
+        <div class="pcard-level"><span class="pcard-ll">Threat Level:</span><div class="pips"><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip"></div></div></div>
+        <div class="pcard-weapons-label">&#9876; Weapons</div>
+        <div class="ptools"><span class="pt">CapCut</span><span class="pt">Figma</span><span class="pt">Canva Pro</span></div>
+      </div>
+    </div>
+    <div class="pcard rv" style="transition-delay:0.4s">
+      <div class="pcard-top" style="background:var(--yellow);">
+        <div class="halftone-yellow" style="position:absolute;inset:0;opacity:0.5;"></div>
+        <div class="pcard-icon" style="position:relative;z-index:2;color:var(--black);-webkit-text-stroke:2px var(--black);font-size:40px;">P&amp;L</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-name">Jain-Level Cost Discipline</div>
+        <div class="pcard-desc">Grows revenue without torching the budget. Knows where every rupee goes and what it returns. Start-up frugality with enterprise-level ambition. Never once ordered avocado toast at a brand event.</div>
+        <div class="pcard-level"><span class="pcard-ll">Threat Level:</span><div class="pips"><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div><div class="pip on"></div></div></div>
+        <div class="pcard-weapons-label">&#9876; Weapons</div>
+        <div class="ptools"><span class="pt">Notion</span><span class="pt">Airtable</span><span class="pt">P&L Mgmt</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ORIGIN STORY ===================== -->
+<section id="origin">
+  <div class="chap-header">
+    <div class="chap-num">00</div>
+    <div>
+      <div class="chap-title">THE ORIGIN STORY</div>
+      <div class="chap-sub">Andheri, Mumbai. 2014 &mdash; A 17-year-old walked through the gates of St. Andrew's College with a backpack, a hazy notion of &ldquo;doing something in media&rdquo; and absolutely no idea he was about to become a weapon.</div>
+    </div>
+  </div>
+  <div class="comic-page">
+    <div class="panel-row">
+      <div class="panel tall p13 rl">
+        <div class="halftone" style="position:absolute;inset:0;opacity:0.2;z-index:0;"></div>
+        <div class="pc">
+          <span class="caption" style="margin-bottom:14px;">St. Andrew's College. 9:03 AM. First day.</span>
+          <div class="big-text" style="margin-bottom:16px;font-size:clamp(28px,4vw,52px);">A backpack.<br>A uniform.<br>Zero clue.</div>
+          <div class="body-text" style="margin-bottom:16px;">Somewhere between Borivali and Bandra on the Mumbai local, destiny was quietly filling out its paperwork. Young Pranay had enrolled in Advertising under the Bachelor of Mass Media programme. He thought it meant making catchy jingles. He was not entirely wrong.</div>
+          <div class="bubble" style="margin-top:auto;font-size:13px;">"I picked BMM because I liked commercials. Specifically the ones with the catchy music. I did not expect it to turn me into this."</div>
+        </div>
+      </div>
+      <div class="panel p-dark tall p23 rv">
+        <div class="halftone-blue" style="position:absolute;inset:0;opacity:0.5;z-index:0;"></div>
+        <div class="panel-ghost white" style="font-size:160px;bottom:-20px;right:-10px;">BMM</div>
+        <div class="pc" style="justify-content:space-between;">
+          <span class="caption dark">Bachelor of Mass Media &mdash; Advertising Specialisation</span>
+          <div style="margin:20px 0;">
+            <div style="font-family:'Bangers',cursive;font-size:clamp(36px,5vw,68px);color:var(--yellow);line-height:0.9;">ST. ANDREW'S<br><span style="color:white;">COLLEGE</span></div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.5);margin-top:8px;letter-spacing:2px;text-transform:uppercase;">Mumbai University &nbsp;&middot;&nbsp; Class of 2017</div>
+          </div>
+          <div class="body-text" style="color:rgba(255,255,255,0.7);margin-bottom:16px;">Three years of consumer behaviour, brand theory, and how to make people want things they didn't know they needed. Also one unforgettable lecture where a professor declared: <strong style="color:var(--yellow);">&ldquo;Marketing is legal manipulation.&rdquo;</strong> Pranay underlined it. Twice.</div>
+          <span class="caption dark" style="display:block;width:100%;">He graduated in 2017 and immediately forgot how to be ordinary.</span>
+        </div>
+      </div>
+    </div>
+    <div class="panel-row">
+      <div class="panel short p-black rv" style="border-color:var(--yellow);">
+        <div class="pc" style="flex-direction:row;align-items:center;gap:20px;padding:16px 28px;flex-wrap:wrap;">
+          <span class="caption blk" style="white-space:nowrap;">The Education Arc</span>
+          <div class="tl" style="flex:1;">
+            <div class="tl-dot"></div><div class="tl-seg on"></div><div class="tl-dot"></div>
+            <div class="tl-seg on"></div><div class="tl-dot"></div><div class="tl-seg on"></div>
+            <div class="tl-dot" style="background:var(--red);"></div>
+          </div>
+          <span class="caption red">2014 &rarr; 2017</span>
+          <div class="body-text" style="width:100%;color:rgba(255,255,255,0.45);font-size:12px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.08);">He didn't just study advertising. He studied people &mdash; what makes them click, what makes them stop, what makes them buy. The degree was a door. What came next blew it off the hinges.</div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-row">
+      <div class="panel p-yellow med rv" style="display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;">
+        <div class="speed-lines" style="position:absolute;inset:0;opacity:0.2;"></div>
+        <div style="text-align:center;position:relative;z-index:2;padding:24px;">
+          <div class="action" style="font-size:clamp(52px,7vw,88px);color:var(--black);">ORIGIN<br>UNLOCKED!</div>
+          <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-top:8px;">Plot twist: the real education was about to begin.</div>
+        </div>
+      </div>
+      <div class="panel p23 med rr">
+        <div class="pc" style="justify-content:center;gap:14px;">
+          <span class="caption" style="margin-bottom:4px;">Theory vs. Reality: A Field Study</span>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <div style="border:3px solid var(--black);padding:12px;background:rgba(255,208,0,0.1);">
+              <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:6px;">Textbook Said:</div>
+              <div class="body-text" style="font-size:12px;">"Build a brand with a consistent visual identity."</div>
+            </div>
+            <div style="border:3px solid var(--black);padding:12px;background:rgba(217,26,26,0.08);">
+              <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:6px;">The Job Said:</div>
+              <div class="body-text" style="font-size:12px;">"Build a brand with zero budget, by Tuesday. CEO wants it fun but also corporate. And maybe add a gif."</div>
+            </div>
+            <div style="border:3px solid var(--black);padding:12px;background:rgba(255,208,0,0.1);">
+              <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:6px;">Textbook Said:</div>
+              <div class="body-text" style="font-size:12px;">"Understand the consumer decision journey."</div>
+            </div>
+            <div style="border:3px solid var(--black);padding:12px;background:rgba(217,26,26,0.08);">
+              <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:6px;">The Job Said:</div>
+              <div class="body-text" style="font-size:12px;">"The consumer journey is a chaotic wormhole. Navigate it. Automate it. Then explain it to the investor."</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== THE RISE ===================== -->
+<section id="rise">
+  <!-- VECTORR -->
+  <div class="chap-header">
+    <div class="chap-num">01</div>
+    <div>
+      <div class="chap-title">THE RISE &mdash; MISSION ONE: VECTORR</div>
+      <div class="chap-sub">Mumbai, 2017 &mdash; The mission? Turn India's most determined nerds into its brightest engineers and doctors. The problem? No brand. No pipeline. No team. No clients. Just vibes and a very optimistic founder.</div>
+    </div>
+  </div>
+  <div class="comic-page">
+    <div class="panel-row">
+      <div class="panel tall p13 rl">
+        <div class="halftone" style="position:absolute;inset:0;opacity:0.25;z-index:0;"></div>
+        <div class="pc">
+          <span class="caption" style="margin-bottom:14px;">Vectorr.in. August 2017.</span>
+          <div class="big-text" style="margin-bottom:16px;">An empty office.<br>A blank website.<br>Zero clients.</div>
+          <div class="body-text" style="margin-bottom:16px;">Vectorr was an Ed-Tech startup with a heroic vision: give every JEE and NEET aspirant the tools and mentorship to crack India's toughest exams. Noble ambition. Catastrophic execution infrastructure. The first marketing hire was supposed to be a "sales guy." They got something far more dangerous.</div>
+          <div class="bubble" style="margin-top:auto;font-size:13px;">"They handed me a blank slide deck and said 'figure it out.' Reader: I figured it out."</div>
+        </div>
+      </div>
+      <div class="panel p-dark tall p23 rv">
+        <div class="halftone-blue" style="position:absolute;inset:0;opacity:0.5;z-index:0;"></div>
+        <div class="panel-ghost white" style="font-size:180px;bottom:-20px;right:-10px;">BLD</div>
+        <div class="pc" style="justify-content:space-between;">
+          <span class="caption dark">He jumped into the eye of the storm. And built it all.</span>
+          <div class="action" style="font-size:clamp(48px,6vw,84px);color:var(--yellow);line-height:0.9;margin:20px 0;text-shadow:5px 5px 0 rgba(0,0,0,0.5);">BRAND.<br>PIPELINE.<br>TEAM.<br>REVENUE.</div>
+          <div class="body-text" style="color:rgba(255,255,255,0.7);margin-bottom:14px;">Website built. SEO architected. Social channels launched. Paid acquisition dialled in. CRM configured. Automated follow-up sequences designed. Sales team recruited, trained and deployed. All of this, solo, in a company that didn't exist six months ago.</div>
+          <span class="caption dark" style="display:block;width:100%;">The assignment was simple. The path was not. He paved it anyway.</span>
+        </div>
+      </div>
+    </div>
+    <div class="panel-row">
+      <div class="panel short p-black rv" style="border-color:var(--yellow);">
+        <div class="pc" style="flex-direction:row;align-items:center;gap:20px;padding:16px 28px;">
+          <span class="caption blk" style="white-space:nowrap;">The 18-Month War</span>
+          <div class="tl" style="flex:1;">
+            <div class="tl-dot"></div><div class="tl-seg on"></div><div class="tl-dot"></div>
+            <div class="tl-seg on"></div><div class="tl-dot"></div><div class="tl-seg on"></div>
+            <div class="tl-dot" style="background:var(--red);"></div>
+          </div>
+          <span class="caption red">&#8377;2 Cr REVENUE</span>
+        </div>
+      </div>
+    </div>
+    <div class="panel-row">
+      <div class="panel p-red med rv" style="position:relative;overflow:hidden;">
+        <div class="halftone-red" style="position:absolute;inset:0;opacity:0.5;"></div>
+        <div style="position:absolute;top:-20px;right:-10px;font-family:'Bangers',cursive;font-size:200px;color:rgba(0,0,0,0.09);line-height:1;pointer-events:none;">2</div>
+        <div class="stat">
+          <span class="stat-n"><span class="count-up" data-target="2">0</span>Cr</span>
+          <span class="stat-l">Revenue Generated</span>
+          <span class="stat-c">Starting from absolute zero. Rupee zero.</span>
+        </div>
+      </div>
+      <div class="panel p23 med rr">
+        <div class="pc" style="justify-content:space-between;">
+          <span class="caption">The Turning Point</span>
+          <div class="big-text" style="margin:12px 0;">18 months.<br>Zero to hero.</div>
+          <div class="body-text">He didn't just sell a product &mdash; he built the machine that sells it. Automated follow-ups. Content that converts. A team that doesn't quit. Positioning that made Vectorr look like the only logical choice for every serious student in Mumbai. And <strong>&#8377;2 crore in revenue to prove it wasn't luck.</strong></div>
+          <div class="bubble right" style="margin-top:12px;">"They said it was impossible. I said give me 18 months and a decent Wi-Fi connection."</div>
+        </div>
+      </div>
+      <div class="panel p-yellow med rv" style="display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;">
+        <div class="speed-lines" style="position:absolute;inset:0;opacity:0.2;"></div>
+        <div style="text-align:center;position:relative;z-index:2;">
+          <div class="action" style="font-size:clamp(56px,7vw,96px);color:var(--red);">KA-CHING!</div>
+          <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-top:8px;">First sale closed.<br>Then another. Then another.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHIAMAK -->
+  <div class="chap-header" style="border-color:var(--red);">
+    <div class="chap-num" style="color:var(--red);">02</div>
+    <div>
+      <div class="chap-title">THE RISE &mdash; MISSION TWO: SHIAMAK</div>
+      <div class="chap-sub">Mumbai &rarr; The World, 2019&ndash;2023 &mdash; The villain? The Global Boredom Epidemic. The cure? DISCO. Mission: spread the joy of dance to every corner of the country and awaken the inner dance master lurking in every Indian soul.</div>
+    </div>
+  </div>
+  <div class="comic-page">
+    <div class="panel-row">
+      <div class="panel p-dark xtall p23 rl" style="position:relative;overflow:hidden;">
+        <div class="halftone-blue" style="position:absolute;inset:0;opacity:0.5;z-index:0;"></div>
+        <div class="panel-ghost white" style="font-size:150px;bottom:-20px;right:-15px;">SD</div>
+        <div class="pc" style="justify-content:space-between;">
+          <span class="caption dark">Shiamak Davar Performing Arts &mdash; 2019. Bigger battlefield. No warm-up lap.</span>
+          <div class="action" style="font-size:clamp(50px,7vw,96px);color:white;line-height:0.88;margin:16px 0;">THE STAKES<br>JUST GOT<br><span style="color:var(--red);">BIGGER.</span></div>
+          <div class="body-text" style="color:rgba(255,255,255,0.7);margin-bottom:16px;">Celebrity choreographer. Cultural institution. Household name. Shiamak Davar's performing arts empire spanned 40+ centres across India, Canada, the UK and the Middle East. The brief: build and execute a marketing strategy that spreads the joy of dance to every corner of the country and inspires youth to awaken their inner dance master. The catch: full P&amp;L accountability from day one.</div>
+          <div class="body-text" style="color:rgba(255,255,255,0.55);margin-bottom:16px;">Four years of simultaneous multi-city campaigns, influencer partnerships, corporate tie-ups, social strategy and enrolment pipelines &mdash; all running in parallel, across four time zones, without ever losing the brand's signature sparkle. Not even once.</div>
+          <span class="caption dark" style="display:block;width:100%;">If Vectorr was boot camp &mdash; Shiamak was full-scale war. With glitter cannons.</span>
+        </div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
+        <div class="panel med rv" style="background:var(--yellow);flex:1;position:relative;overflow:hidden;">
+          <div class="halftone-yellow" style="position:absolute;inset:0;opacity:0.4;"></div>
+          <div class="stat">
+            <span class="stat-n" style="color:var(--black);-webkit-text-stroke:2px var(--black);"><span class="count-up" data-target="40">0</span>+</span>
+            <span class="stat-l" style="color:var(--black);">Centres Globally</span>
+            <span class="stat-c" style="color:rgba(0,0,0,0.5);">All managed simultaneously</span>
+          </div>
+        </div>
+        <div class="panel p-black med rv" style="flex:1;">
+          <div class="stat">
+            <span class="stat-n"><span class="count-up" data-target="4">0</span></span>
+            <span class="stat-l">Countries</span>
+            <span class="stat-c">India &middot; Canada &middot; UK &middot; Middle East</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-row">
+      <div class="panel p-black rv" style="flex:1;">
+        <div class="pc" style="align-items:center;text-align:center;padding:28px;">
+          <span class="caption red" style="margin-bottom:16px;">He Owned All Of This. For 4 Consecutive Years.</span>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;">
+            <div style="border:3px solid var(--yellow);padding:14px;text-align:center;"><div style="font-family:'Bangers',cursive;font-size:28px;color:var(--yellow);">P&amp;L</div><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-top:4px;">Full Ownership</div></div>
+            <div style="border:3px solid var(--yellow);padding:14px;text-align:center;"><div style="font-family:'Bangers',cursive;font-size:28px;color:var(--yellow);">Brand</div><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-top:4px;">Voice &amp; Visuals</div></div>
+            <div style="border:3px solid var(--yellow);padding:14px;text-align:center;"><div style="font-family:'Bangers',cursive;font-size:28px;color:var(--yellow);">Social</div><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-top:4px;">Multi-Platform</div></div>
+            <div style="border:3px solid var(--yellow);padding:14px;text-align:center;"><div style="font-family:'Bangers',cursive;font-size:28px;color:var(--yellow);">Revenue</div><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-top:4px;">Enrolment Growth</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="panel p23 med rr" style="position:relative;overflow:hidden;">
+        <div class="speed-lines" style="position:absolute;inset:0;opacity:0.12;"></div>
+        <div class="pc" style="justify-content:center;align-items:center;text-align:center;">
+          <div class="action" style="font-size:clamp(58px,8vw,110px);color:var(--red);display:block;">BOOM!</div>
+          <div class="body-text" style="max-width:480px;margin:14px auto 0;text-align:center;">4 years. Multi-continent scale. Branding consistency across 40+ touchpoints without losing the plot. <strong>This is where a marketing manager became a marketing weapon.</strong></div>
+        </div>
+      </div>
+    </div>
+    <!-- Shiamak Allies -->
+    <div class="panel-row">
+      <div class="panel p-black rv" style="border-color:var(--red);">
+        <div class="pc" style="padding:20px 28px;">
+          <span class="caption red" style="margin-bottom:16px;">Allies In The Fight Against The Boredom Epidemic</span>
+          <div class="body-text" style="color:rgba(255,255,255,0.5);font-size:12px;margin-bottom:16px;">While spreading the gospel of dance across India's dance-deprived corridors, Pranay onboarded these legends as corporate partners and collaborators. They believed in the mission. Or at least their CSR budgets did. Either way &mdash; the deal got done.</div>
+          <div class="allies-grid">
+            <span class="ally">Kotak Bank</span><span class="ally">Tata Motors</span><span class="ally">TISS</span>
+            <span class="ally">BookMyShow</span><span class="ally">Billabong High School</span>
+            <span class="ally">Birla Open Minds</span><span class="ally">&amp; Many More</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MISSION — ISH ===================== -->
+<section id="mission">
+  <div class="chap-header" style="border-color:var(--yellow);background:var(--blue-ink);">
+    <div class="chap-num" style="color:var(--yellow);">03</div>
+    <div>
+      <div class="chap-title" style="color:white;">THE CURRENT MISSION</div>
+      <div class="chap-sub">India Signing Hands, 2023&ndash;Present &mdash; The final boss: inaccessibility itself. One billion people with disabilities, systemically ignored by media, government and enterprise alike. Time to change that. Permanently.</div>
+    </div>
+  </div>
+  <div class="comic-page">
+    <div class="panel-row">
+      <div class="panel p-black tall p13 rl" style="position:relative;overflow:hidden;">
+        <div class="halftone-blue" style="position:absolute;inset:0;opacity:0.5;z-index:0;"></div>
+        <div class="pc" style="justify-content:space-between;">
+          <span class="caption dark" style="font-size:11px;">TOP SECRET &mdash; MISSION BRIEF</span>
+          <div style="margin:16px 0;">
+            <div style="font-family:'Bangers',cursive;font-size:22px;color:var(--yellow);margin-bottom:6px;">ORGANISATION:</div>
+            <div style="font-size:14px;color:white;margin-bottom:14px;line-height:1.5;">India Signing Hands (ISH)<br><span style="color:rgba(255,255,255,0.45);font-size:12px;">Social Impact &middot; Accessibility &middot; Assistive Technology</span></div>
+            <div style="font-family:'Bangers',cursive;font-size:22px;color:var(--yellow);margin-bottom:6px;">THE MISSION:</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.6;margin-bottom:14px;">Harness assistive technology to scale a business that helps people with disabilities lead a better life through education, information and access. Not charity. Not optics. A full-scale commercial and social operation with measurable impact.</div>
+            <div style="font-family:'Bangers',cursive;font-size:22px;color:var(--yellow);margin-bottom:6px;">PRANAY'S ROLE:</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.6;">Sole owner of all revenue. Builder of enterprise partnerships. Government liaison. Chief deal-closer. Simultaneously heads NGO fundraising voluntarily. Because one job at a time is for the faint of heart.</div>
+          </div>
+          <span class="caption red" style="display:block;text-align:center;">STATUS: ONGOING &mdash; AND WINNING</span>
+        </div>
+      </div>
+      <div class="panel p23 tall rr" style="position:relative;overflow:hidden;">
+        <div class="panel-ghost" style="font-size:130px;bottom:-10px;right:-10px;">ISH</div>
+        <div class="pc" style="justify-content:space-between;">
+          <span class="caption">The Results Don't Whisper. They Roar.</span>
+          <div class="action" style="font-size:clamp(40px,5vw,72px);color:var(--black);line-height:0.9;margin:16px 0;">3.5<span style="color:var(--red);">x</span><br>REVENUE<br>GROWTH</div>
+          <div class="body-text" style="margin-bottom:14px;">Since taking over BD in 2023, ISH's revenue has grown 3.5&times;. Not through luck. Through <strong>deliberate strategy, relentless outreach, and enterprise-grade pitching.</strong> Also through the radical act of actually following up.</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <span class="cbadge">Google</span><span class="cbadge">RBI</span><span class="cbadge">HDFC Bank</span>
+            <span class="cbadge">Axis Bank</span><span class="cbadge">JioHotstar</span><span class="cbadge">Adani Airports</span>
+            <span class="cbadge">SonyLIV</span><span class="cbadge">Zee5</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-row">
+      <div class="panel p-yellow med rv" style="position:relative;overflow:hidden;">
+        <div class="speed-lines" style="position:absolute;inset:0;opacity:0.2;"></div>
+        <div class="stat">
+          <span class="stat-n" style="color:var(--black);-webkit-text-stroke:2px var(--red);">100<span style="font-size:0.5em;vertical-align:super;-webkit-text-stroke:1px var(--red);">x</span></span>
+          <span class="stat-l" style="color:var(--black);">NGO Funding Growth</span>
+          <span class="stat-c" style="color:rgba(0,0,0,0.5);">&#8377;1 Lakh &rarr; &#8377;1 Crore in annual donations</span>
+        </div>
+      </div>
+      <div class="panel p-dark p23 med rv" style="position:relative;overflow:hidden;">
+        <div class="halftone-blue" style="position:absolute;inset:0;opacity:0.5;z-index:0;"></div>
+        <div class="pc" style="justify-content:center;gap:10px;">
+          <span class="caption dark" style="margin-bottom:4px;">Accomplishments On The Ground</span>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="border-left:3px solid var(--yellow);padding-left:12px;">
+              <div style="font-family:'Bangers',cursive;font-size:16px;color:var(--yellow);">8+ Enterprise Partnerships Closed</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.55);margin-top:2px;">Google, RBI, HDFC, Axis, JioHotstar, Adani, SonyLIV and Zee5. All closed directly, without a sales team.</div>
+            </div>
+            <div style="border-left:3px solid var(--red);padding-left:12px;">
+              <div style="font-family:'Bangers',cursive;font-size:16px;color:var(--red);">Government-Level Policy Impact</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.55);margin-top:2px;">Forged partnerships with government bodies to bring accessibility into policy conversations. Made accessibility a business mandate, not a PR checkbox.</div>
+            </div>
+            <div style="border-left:3px solid var(--yellow);padding-left:12px;">
+              <div style="font-family:'Bangers',cursive;font-size:16px;color:var(--yellow);">CSR Fundraising from Zero</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.55);margin-top:2px;">Built the Foundation pipeline from scratch. Scaled to &#8377;1Cr annually. Voluntary role. Non-negotiable commitment.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel p-red med rv" style="display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+        <div class="halftone-red" style="position:absolute;inset:0;opacity:0.4;"></div>
+        <div style="text-align:center;position:relative;z-index:2;">
+          <div class="action" style="font-size:clamp(60px,7vw,100px);color:white;">POW!</div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-top:8px;">That's how you close<br>for a cause.</div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-row">
+      <div class="panel p-black rv" style="border-color:var(--yellow);">
+        <div class="pc" style="flex-direction:row;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;padding:20px 28px;">
+          <div style="flex:1;min-width:280px;">
+            <span class="caption" style="margin-bottom:12px;display:block;">Side Quest Unlocked: Signing Hands Foundation</span>
+            <div class="body-text" style="color:rgba(255,255,255,0.6);font-size:13px;max-width:480px;line-height:1.6;">Running a full fundraising operation on top of a full-time commercial role. The Foundation receives zero salary from Pranay and 100% of his effort. CSR partners include Axis Bank, Pidilite Industries and Coromandel International. Because apparently Pranay considers &ldquo;work-life balance&rdquo; a myth perpetuated by people who don't care enough.</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div class="policy-badge"><span class="policy-icon">&#127963;</span><div class="policy-text">Government<br>Partnerships Forged</div></div>
+            <div class="policy-badge"><span class="policy-icon">&#128221;</span><div class="policy-text">Accessibility Policy<br>Conversations Opened</div></div>
+            <div class="policy-badge"><span class="policy-icon">&#129309;</span><div class="policy-text">CSR: Axis &middot; Pidilite<br>&middot; Coromandel</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ROGUES GALLERY ===================== -->
+<section id="rogues" style="padding:0;">
+  <div class="rogues-header">
+    <div class="rogues-title">THE <span>ROGUES</span> GALLERY</div>
+    <div class="rogues-sub">Business Villains. Defeated. Repeatedly. And with considerable style.</div>
+  </div>
+  <div class="rogues-grid">
+    <div class="rcard rl">
+      <div class="rcard-left">
+        <div class="halftone-blue" style="position:absolute;inset:0;opacity:0.6;z-index:0;"></div>
+        <div class="rcard-num">01</div>
+        <div class="rcard-villain">THE GHOST PIPELINE</div>
+        <div class="rcard-status">NEUTRALISED</div>
+      </div>
+      <div class="rcard-right">
+        <div class="rcard-problem">Revenue That Disappears Every Quarter</div>
+        <div class="rcard-solve">When your sales depend entirely on referrals and hope, you don't have a pipeline &mdash; you have a prayer circle with a Notion doc. Pranay builds the system that makes revenue predictable, repeatable and frankly boring in the best possible way.</div>
+        <div class="rcard-result"><span class="rcard-rnum">3.5x</span><span class="rcard-rlabel">Consistent Revenue Growth at ISH</span></div>
+      </div>
+    </div>
+    <div class="rcard rr">
+      <div class="rcard-left">
+        <div class="halftone-blue" style="position:absolute;inset:0;opacity:0.6;z-index:0;"></div>
+        <div class="rcard-num">02</div>
+        <div class="rcard-villain">THE INVISIBLE BRAND</div>
+        <div class="rcard-status">DESTROYED</div>
+      </div>
+      <div class="rcard-right">
+        <div class="rcard-problem">Great Product. Nobody's Heard Of It.</div>
+        <div class="rcard-solve">A brand that can't be found doesn't exist &mdash; it's a very well-funded hobby. Built digital presence from zero at Vectorr until the brand had gravity. People started coming to it. Then they started paying it.</div>
+        <div class="rcard-result"><span class="rcard-rnum">0 &rarr; 2Cr</span><span class="rcard-rlabel">Revenue from a Brand-First Strategy</span></div>
+      </div>
+    </div>
+    <div class="rcard rl" style="transition-delay:0.1s">
+      <div class="rcard-left">
+        <div class="halftone-blue" style="position:absolute;inset:0;opacity:0.6;z-index:0;"></div>
+        <div class="rcard-num">03</div>
+        <div class="rcard-villain">ENTERPRISE FEAR</div>
+        <div class="rcard-status">OBLITERATED</div>
+      </div>
+      <div class="rcard-right">
+        <div class="rcard-problem">Enterprise Deals That Never Close</div>
+        <div class="rcard-solve">Big clients have big objections, long procurement cycles and seventeen stakeholders who all have opinions. Pranay understands how enterprise buyers think, what makes them stall, and exactly what it takes to turn &ldquo;we'll loop back in Q3&rdquo; into a signed contract before Q3 even begins.</div>
+        <div class="rcard-result"><span class="rcard-rnum">8+</span><span class="rcard-rlabel">Enterprise Clients Closed at ISH</span></div>
+      </div>
+    </div>
+    <div class="rcard rr" style="transition-delay:0.1s">
+      <div class="rcard-left">
+        <div class="halftone-blue" style="position:absolute;inset:0;opacity:0.6;z-index:0;"></div>
+        <div class="rcard-num">04</div>
+        <div class="rcard-villain">MANUAL PROCESS MONSTER</div>
+        <div class="rcard-status">AUTOMATED</div>
+      </div>
+      <div class="rcard-right">
+        <div class="rcard-problem">Your Team Is Drowning in Repetition</div>
+        <div class="rcard-solve">If a human does the same thing every day without variation, a machine should do it instead. Follow-ups, reporting, onboarding sequences &mdash; all automated and working at 3 AM when everyone else has the audacity to sleep.</div>
+        <div class="rcard-result"><span class="rcard-rnum">Zapier + N8N</span><span class="rcard-rlabel">Weapons of Choice</span></div>
+      </div>
+    </div>
+    <div class="rcard rl" style="transition-delay:0.2s">
+      <div class="rcard-left">
+        <div class="halftone-blue" style="position:absolute;inset:0;opacity:0.6;z-index:0;"></div>
+        <div class="rcard-num">05</div>
+        <div class="rcard-villain">BLIND BUDGET BURNS</div>
+        <div class="rcard-status">EXTINGUISHED</div>
+      </div>
+      <div class="rcard-right">
+        <div class="rcard-problem">Money Goes In. Nobody Knows Where.</div>
+        <div class="rcard-solve">Marketing without attribution is very expensive decoration. You're not running campaigns &mdash; you're making colourful donations to Meta's quarterly earnings. Proper tracking reveals what's working and what's quietly torching your runway one boosted post at a time.</div>
+        <div class="rcard-result"><span class="rcard-rnum">GA4 + Mix</span><span class="rcard-rlabel">Full Attribution Stack Deployed</span></div>
+      </div>
+    </div>
+    <div class="rcard rr" style="transition-delay:0.2s">
+      <div class="rcard-left">
+        <div class="halftone-blue" style="position:absolute;inset:0;opacity:0.6;z-index:0;"></div>
+        <div class="rcard-num">06</div>
+        <div class="rcard-villain">THE CSR FUNDING WALL</div>
+        <div class="rcard-status">SCALED</div>
+      </div>
+      <div class="rcard-right">
+        <div class="rcard-problem">Your NGO Can't Break Past Its First Donors</div>
+        <div class="rcard-solve">CSR fundraising requires a completely different pitch &mdash; aligned with corporate mandate, Section 135 compliance and impact reporting frameworks. Built this machine from zero and scaled it 100&times;.</div>
+        <div class="rcard-result"><span class="rcard-rnum">100x</span><span class="rcard-rlabel">NGO Donation Growth Since 2023</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SIGNAL ===================== -->
+<section id="signal" style="padding:8px;background:var(--black);">
+  <div class="signal-wrap">
+    <div class="signal-left">
+      <div class="halftone-blue" style="position:absolute;inset:0;opacity:0.5;"></div>
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(255,208,0,0.07),transparent 60%);pointer-events:none;"></div>
+      <div class="signal-ghost">PS</div>
+      <div class="signal-title">SIGNAL<br>THE<br>CLOSER.</div>
+      <div class="signal-desc">Got a start-up that needs to grow? A brand that needs to be found? A pipeline running on vibes and referrals? A deal that simply will not close?<br><br>That's the signal. This is the answer.</div>
+    </div>
+    <div class="signal-right">
+      <div class="cfold"></div>
+      <span class="caption" style="display:block;margin-bottom:28px;">Transmission Channels:</span>
+      <a href="mailto:pranay.shah@live.com" class="citem">
+        <span class="citem-label">Encrypted Line (Email)</span>
+        <span class="citem-val">pranay.shah@live.com</span>
+      </a>
+      <a href="tel:+917208684826" class="citem">
+        <span class="citem-label">Bat-Phone (Mobile)</span>
+        <span class="citem-val">+91 7208 684826</span>
+      </a>
+      <a href="https://linkedin.com/in/pranay-shah" class="citem" target="_blank" rel="noopener">
+        <span class="citem-label">Intel Network (LinkedIn)</span>
+        <span class="citem-val">linkedin.com/in/pranay-shah</span>
+      </a>
+      <div class="cnote">Based in Mumbai. Works everywhere the problem exists &mdash; which, frankly, is basically everywhere.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="logo">PRANAY SHAH</span>
+  <span>&copy; 2026 &mdash; The Closer &mdash; All Villains Defeated</span>
+  <span>Issue #001</span>
+</footer>
+
+<script>
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.rv,.rl,.rr').forEach((el, i) => {
+  if (!el.style.transitionDelay) el.style.transitionDelay = `${(i % 5) * 0.07}s`;
+  io.observe(el);
+});
+
+const cio = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target, target = parseFloat(el.dataset.target);
+    const dur = 1600, t0 = performance.now();
+    const isF = String(target).includes('.');
+    (function tick(now) {
+      const p = Math.min((now - t0) / dur, 1);
+      const v = (1 - Math.pow(1 - p, 4)) * target;
+      el.textContent = isF ? v.toFixed(1) : Math.round(v);
+      if (p < 1) requestAnimationFrame(tick);
+      else el.textContent = isF ? target.toFixed(1) : target;
+    })(t0);
+    cio.unobserve(el);
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.count-up').forEach(el => cio.observe(el));
+
+document.querySelectorAll('.rcard,.pcard').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    card.style.transform = `perspective(600px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateZ(4px)`;
+  });
+  card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+});
+</script>
+</body>
+</html>
